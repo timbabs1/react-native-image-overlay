@@ -7,7 +7,7 @@ import {
   Text,
   View,
   Image,
-  ViewPropTypes
+  ViewPropTypes,
 } from "react-native";
 
 const { width } = Dimensions.get("window");
@@ -46,9 +46,9 @@ export default class ImageOverlay extends Component {
           {
             borderRadius: rounded,
             height: height,
-            justifyContent: justifyContent
+            justifyContent: justifyContent,
           },
-          containerStyle
+          containerStyle,
         ]}
         blurRadius={blurRadius}
       >
@@ -56,11 +56,12 @@ export default class ImageOverlay extends Component {
           style={{
             ...StyleSheet.absoluteFillObject,
             backgroundColor: overlayColor,
-            opacity: overlayAlpha
+            opacity: overlayAlpha,
           }}
         />
-        {!children &&
-          title && <Text style={[styles.title, titleStyle]}>{title}</Text>}
+        {!children && title && (
+          <Text style={[styles.title, titleStyle]}>{title}</Text>
+        )}
         {children}
       </ImageBackground>
     );
@@ -71,33 +72,35 @@ const styles = StyleSheet.create({
   image: {
     width: width,
     overflow: "hidden",
-    alignItems: "center"
+    alignItems: "center",
   },
   title: {
     margin: 20,
     color: "white",
     textAlign: "center",
-    fontSize: 16
-  }
+    fontSize: 16,
+  },
 });
 
-ImageOverlay.propTypes = {
-  rounded: PropTypes.number,
-  source: Image.propTypes.source,
-  height: PropTypes.number,
-  title: PropTypes.string,
-  titleStyle: Text.propTypes.style,
-  overlayColor: PropTypes.string,
-  overlayAlpha: PropTypes.number,
-  contentPosition: PropTypes.oneOf(["top", "center", "bottom"]),
-  containerStyle: ViewPropTypes.style,
-  blurRadius: PropTypes.number,
-  children: PropTypes.element
-};
+// Commenting out prop types to fix react native 0.69.6 bug of not accepting proptypes
 
-ImageOverlay.defaultProps = {
-  height: 300,
-  overlayColor: "#000000",
-  overlayAlpha: 0.5,
-  contentPosition: "center"
-};
+// ImageOverlay.propTypes = {
+//   rounded: PropTypes.number,
+//   source: Image.propTypes.source,
+//   height: PropTypes.number,
+//   title: PropTypes.string,
+//   titleStyle: Text.propTypes.style,
+//   overlayColor: PropTypes.string,
+//   overlayAlpha: PropTypes.number,
+//   contentPosition: PropTypes.oneOf(["top", "center", "bottom"]),
+//   containerStyle: ViewPropTypes.style,
+//   blurRadius: PropTypes.number,
+//   children: PropTypes.element
+// };
+
+// ImageOverlay.defaultProps = {
+//   height: 300,
+//   overlayColor: "#000000",
+//   overlayAlpha: 0.5,
+//   contentPosition: "center"
+// };
